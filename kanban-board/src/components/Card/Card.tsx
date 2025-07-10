@@ -9,8 +9,9 @@ interface CardProps {
   tag?: string;
   dueDate?: string;
   onClick?: () => void;
+  isOverlay?: boolean;
 }
-export function Card({ id, title, tag, dueDate, onClick }: CardProps) {
+export function Card({ id, title, tag, dueDate, onClick, isOverlay = false }: CardProps) {
   const {
     setNodeRef,
     transform,
@@ -22,12 +23,19 @@ export function Card({ id, title, tag, dueDate, onClick }: CardProps) {
 
   const startPosRef = useRef<{ x: number; y: number } | null>(null)
 
-  const style = {
+  const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.8 : 1,
     cursor: "grab",
+    visibility: isDragging ? "hidden" : "visible",
   }
+
+  const draggingClass = isOverlay
+    ? "drag-overlay"
+    : isDragging
+    ? "dragging"
+    : ""
 
   const handlePointerDown = (e: React.PointerEvent) => {
     startPosRef.current = { x: e.clientX, y: e.clientY }
@@ -50,7 +58,7 @@ export function Card({ id, title, tag, dueDate, onClick }: CardProps) {
       style={style}
       {...attributes}
       {...listeners}
-      className={`task-card ${isDragging ? "dragging" : ""}`}
+      className={`task-card ${draggingClass}`}
       onPointerDown={(e) => {
         listeners?.onPointerDown?.(e); // preserve drag
         handlePointerDown(e); // custom click logic
@@ -66,6 +74,3 @@ export function Card({ id, title, tag, dueDate, onClick }: CardProps) {
     </div>
   )
 }
-
-
-

@@ -8,10 +8,20 @@ import {
   SortableContext,
   verticalListSortingStrategy
 } from '@dnd-kit/sortable'
+import { useDroppable } from '@dnd-kit/core'
 
-export function Column({ id, title, tasks, setTasks, activeId }: ColumnProps) {
+export function Column({ id, title, tasks, setTasks, activeId, overId }: ColumnProps) {
 
+  const { setNodeRef: setDroppableRef } = useDroppable({ id })
+  
   const isActiveColumn = activeId && tasks.some(task => task.id === activeId)
+  const isOverColumn = overId === id || tasks.some(task => task.id === overId)
+
+  const columnClass = [
+  'column',
+  isActiveColumn ? 'column-highlight-source' : '',
+  isOverColumn ? 'column-highlight-target' : '',
+].join(' ');
 
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
   const [activeTask, setActiveTask] = useState<Task | null>(null);
@@ -37,11 +47,14 @@ export function Column({ id, title, tasks, setTasks, activeId }: ColumnProps) {
   }
   return (
     <>
-      <div className={`column ${isActiveColumn ? 'column-highlight' : ''}`}>
+      <div
+        ref={setDroppableRef}
+        className={columnClass}>
 
         <h3 className="column-title">{title}</h3>
 
         <SortableContext
+          id={id}
           items={tasks.map(task => task.id)}
           strategy={verticalListSortingStrategy}
         >

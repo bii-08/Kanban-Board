@@ -15,7 +15,8 @@ export interface ColumnProps {
   /*This is a callback function that allows the child (Column) to update
   part of the parent's state (Board)
   */
-  activeId?: string | null
+  activeId?: string | null;
+  overId?: string | null
 }
 
 export interface PopupProps {

@@ -1,15 +1,21 @@
 .column {
-  background-color: #101205;
+  background-color: #ebecf0;
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: 3px;
   width: 280px;
   min-height: 300px;
   margin-right: 1rem;
-  box-shadow: 0 0 0 1px;
-  transition: background-color 0.4s ease;
+  transition: background-color 0.4s ease-in-out;
 }
-.column-highlight {
-  background-color: #c3c3c3; 
+.column-highlight-source {
+  min-height: 300px;
+  background-color: rgba(230, 252, 255);
+  transition: background-color 0.4s ease;
+  border: none;
+}
+.column-highlight-target {
+  min-height: 300px;
+  background-color: rgb(255, 235, 230);
   transition: background-color 0.4s ease;
   border: none;
 }
@@ -18,7 +24,7 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 2rem;
-  color: #e0e0e0;
+  color: #020202;
 }
 
 .column-tasks {
@@ -36,7 +42,7 @@
   padding: 0.5rem;
   font-size: 0.875rem;
   border: 1px solid #ddd;
-  border-radius: 6px 0 0 6px;
+  border-radius: 3px 0 0 6px;
   outline: none;
 }
 
@@ -45,7 +51,7 @@
   background-color: #10b981;
   color: white;
   border: none;
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 3px 3px 0;
   cursor: pointer;
 }
 
