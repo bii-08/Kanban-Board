@@ -19,12 +19,22 @@
   transition: background-color 0.4s ease;
   border: none;
 }
-
+.column-header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
 .column-title {
   font-size: 1.125rem;
   font-weight: 600;
-  margin-bottom: 2rem;
   color: #020202;
+}
+.task-counter {
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #626262;
+  margin-right: 10px;
 }
 
 .column-tasks {

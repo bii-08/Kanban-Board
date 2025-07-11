@@ -10,8 +10,9 @@ interface CardProps {
   dueDate?: string;
   onClick?: () => void;
   isOverlay?: boolean;
+  tagColor?: string;
 }
-export function Card({ id, title, tag, dueDate, onClick, isOverlay = false }: CardProps) {
+export function Card({ id, title, tag, dueDate, onClick, isOverlay = false, tagColor }: CardProps) {
   const {
     setNodeRef,
     transform,
@@ -66,7 +67,7 @@ export function Card({ id, title, tag, dueDate, onClick, isOverlay = false }: Ca
       onPointerUp={handlePointerUp}
     >
 
-      {tag && <span className="task-tag">#{tag}</span>}
+      {tag && <span className="task-tag" style={{backgroundColor: tagColor || "#10b981"}}>#{tag}</span>}
       <h4 className="task-title">{title}</h4>
       <div className="task-footer">
         {dueDate && <span className="task-date">⏰ {dueDate}</span>}

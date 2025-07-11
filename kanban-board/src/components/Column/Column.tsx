@@ -10,18 +10,18 @@ import {
 } from '@dnd-kit/sortable'
 import { useDroppable } from '@dnd-kit/core'
 
-export function Column({ id, title, tasks, setTasks, activeId, overId }: ColumnProps) {
+export function Column({ id, title, tasks, setTasks, activeId, overId, headingColor }: ColumnProps) {
 
   const { setNodeRef: setDroppableRef } = useDroppable({ id })
-  
+
   const isActiveColumn = activeId && tasks.some(task => task.id === activeId)
   const isOverColumn = overId === id || tasks.some(task => task.id === overId)
 
   const columnClass = [
-  'column',
-  isActiveColumn ? 'column-highlight-source' : '',
-  isOverColumn ? 'column-highlight-target' : '',
-].join(' ');
+    'column',
+    isActiveColumn ? 'column-highlight-source' : '',
+    isOverColumn ? 'column-highlight-target' : '',
+  ].join(' ');
 
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
   const [activeTask, setActiveTask] = useState<Task | null>(null);
@@ -51,7 +51,10 @@ export function Column({ id, title, tasks, setTasks, activeId, overId }: ColumnP
         ref={setDroppableRef}
         className={columnClass}>
 
-        <h3 className="column-title">{title}</h3>
+        <div className="column-header">
+          <span className="task-counter">{tasks.length}</span>
+          <h3 className="column-title" style={{ color: headingColor}}>{title}</h3>
+        </div>
 
         <SortableContext
           id={id}
@@ -71,6 +74,7 @@ export function Column({ id, title, tasks, setTasks, activeId, overId }: ColumnP
 
         <div className="add-task">
           <input
+            autoFocus
             type="text"
             value={newTaskTitle}
             placeholder='Add a card...'

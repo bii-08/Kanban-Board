@@ -1,0 +1,16 @@
+.trash-zone {
+  padding: 20px;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  place-content: center;
+  background-color: #3b3b3b;
+  color: white;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.trash-hovered {
+  background-color: #c01b16;
+  color: white;
+}

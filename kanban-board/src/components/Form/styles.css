@@ -10,8 +10,9 @@
 }
 
 .form-group label {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 0.25rem;
+  color: black;
 }
 
 .form-group input,
@@ -24,4 +25,10 @@
 .form-actions {
   display: flex;
   justify-content: flex-end;
+}
+.tag-input-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
 }

@@ -1,10 +1,18 @@
 
 
-export interface Task {
+export type Task = {
   id: string;
   tag?: string;
   title: string;
-  dueDate?: string
+  dueDate?: string;
+  tagColor?: string;
+}
+
+export type Columns = {
+  todo: Task[];
+  inProgress: Task[];
+  inReview: Task[];
+  done: Task[];
 }
 
 export interface ColumnProps {
@@ -15,6 +23,7 @@ export interface ColumnProps {
   /*This is a callback function that allows the child (Column) to update
   part of the parent's state (Board)
   */
+  headingColor: string;
   activeId?: string | null;
   overId?: string | null
 }

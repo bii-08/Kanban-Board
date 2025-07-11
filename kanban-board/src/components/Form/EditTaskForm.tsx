@@ -7,10 +7,11 @@ interface EditTaskFormProps {
   onSave: (updatedTask: Task) => void;
 }
 
-export function EditTaskForm({task, onSave}: EditTaskFormProps) {
-  const [title, setTitle] = useState(task.title)
-  const [tag, setTag] = useState(task.tag || "")
-  const [dueDate, setDueDate] = useState(task.dueDate || "")
+export function EditTaskForm({ task, onSave }: EditTaskFormProps) {
+  const [title, setTitle] = useState<string>(task.title)
+  const [tag, setTag] = useState<string>(task.tag || "")
+  const [dueDate, setDueDate] = useState<string>(task.dueDate || "")
+  const [tagColor, setTagColor] = useState<string>(task.tagColor || "#10b981")
 
   const handleSave = () => {
     const updatedTask: Task = {
@@ -18,6 +19,7 @@ export function EditTaskForm({task, onSave}: EditTaskFormProps) {
       title,
       tag,
       dueDate,
+      tagColor,
     }
     onSave(updatedTask)
   }
@@ -37,13 +39,21 @@ export function EditTaskForm({task, onSave}: EditTaskFormProps) {
       </div>
 
       <div className="form-group">
-        <label htmlFor="tag">Tag</label>
-        <select id="tag" value={tag} onChange={(e) => setTag(e.target.value)}>
-          <option value="">None</option>
-          <option value="design">Design</option>
-          <option value="dev">Development</option>
-          <option value="urgent">Urgent</option>
-        </select>
+        
+        <div className='tag-input-row'>
+          <label htmlFor="tag">Tag</label>
+          <input
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+            placeholder="Enter tag name"
+          />
+          <label>Tag Color</label>
+          <input
+            type="color"
+            value={tagColor}
+            onChange={(e) => setTagColor(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="form-group">
