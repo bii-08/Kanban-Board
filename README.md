@@ -23,17 +23,6 @@ A Trello-like Kanban board built with **React**, **TypeScript**, and `dnd-kit`. 
 
 ![Kanban Board Demo](KanbanBoard_Web_Demo.gif)
 
-## 📁 Folder Structure
-
-src/
-├── components/
-│   ├── Board.tsx
-│   ├── Column.tsx
-│   └── Card.tsx  
-├── types/
-│   └── type.ts
-└── App.tsx
-
 ## 📦 Installation & Run Locally
 
 ```bash
